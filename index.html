@@ -56,6 +56,16 @@ tr:hover td{background:#161b22}
 .card .row span{color:#c9d1d9}
 .card .price{font-size:16px;font-weight:bold;color:#3fb950;margin:6px 0}
 
+.ai-msg{display:flex;margin-bottom:10px;align-items:flex-start}
+.ai-msg.user{flex-direction:row-reverse}
+.ai-msg .bubble{max-width:80%;padding:8px 12px;border-radius:8px;font-size:13px;line-height:1.5;word-break:break-word;white-space:pre-wrap}
+.ai-msg.user .bubble{background:#238636;color:#fff;border-bottom-right-radius:2px}
+.ai-msg.bot .bubble{background:#1f2a3a;color:#c9d1d9;border-bottom-left-radius:2px}
+.ai-msg .avatar{width:28px;height:28px;border-radius:50%;margin:0 8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px}
+.ai-msg.user .avatar{background:#0d2b1a;color:#3fb950}
+.ai-msg.bot .avatar{background:#1f3a5c;color:#58a6ff}
+.ai-msg .time{font-size:9px;color:#484f58;margin-top:2px;margin-bottom:4px}
+.ai-msg.user .time{text-align:right}
 .search{width:100%;padding:10px 14px;background:#161b22;border:1px solid #21262d;border-radius:8px;color:#c9d1d9;font-size:13px;margin-bottom:12px}
 .search:focus{outline:none;border-color:#58a6ff}
 
@@ -112,56 +122,7 @@ tr:hover td{background:#161b22}
 </div>
 
 
-<!-- ========== 配置计算器 ========== -->
-<div class="page" id="p4">
-  <div class="section">
-    <h2> 服务器配置计算器</h2>
-    <div style="background:#161b22;border-radius:8px;padding:16px;margin-bottom:16px">
-      <div style="margin-bottom:12px">
-        <label style="color:#8b949e;font-size:12px;display:block;margin-bottom:4px">游戏类型</label>
-        <select id="calcGame" onchange="calcConfig()" style="width:100%;padding:10px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:13px">
-          <option value="mc">我的世界 MC</option>
-          <option value="cq">传奇 / 热血江湖</option>
-          <option value="ark">方舟生存进化</option>
-          <option value="rust">Rust / 腐蚀</option>
-          <option value="cs">CS:GO / 射击类</option>
-          <option value="2d">泰拉瑞亚 / 星露谷物语类</option>
-          <option value="mmo">独立MMO</option>
-        </select>
-      </div>
-      <div style="margin-bottom:12px">
-        <label style="color:#8b949e;font-size:12px;display:block;margin-bottom:4px">预计玩家数</label>
-        <select id="calcPlayers" onchange="calcConfig()" style="width:100%;padding:10px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:13px">
-          <option value="5">1-5人</option>
-          <option value="20" selected>5-20人</option>
-          <option value="50">20-50人</option>
-          <option value="100">50-100人</option>
-          <option value="200">100人以上</option>
-        </select>
-      </div>
-      <div style="margin-bottom:12px">
-        <label style="color:#8b949e;font-size:12px;display:block;margin-bottom:4px">DDoS 防护需求</label>
-        <select id="calcProtect" onchange="calcConfig()" style="width:100%;padding:10px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:13px">
-          <option value="yes" selected>需要 DDoS 防护</option>
-          <option value="no">不需要</option>
-        </select>
-      </div>
-    </div>
-
-    <div id="calcResult" style="background:#0d2b1a;border:1px solid #238636;border-radius:8px;padding:16px;margin-bottom:12px">
-      <h3 style="color:#3fb950;margin-bottom:8px"> 推荐配置：<span id="calcSpec">4核8G / 10M</span></h3>
-      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">机房建议：<span id="calcDC" style="color:#c9d1d9">厦门电信</span></div>
-      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">月预算：<span id="calcPrice" style="color:#3fb950;font-size:18px;font-weight:bold">￥58</span> /月</div>
-      <div style="font-size:11px;color:#8b949e" id="calcNote">续费同价，月付不锁死。自带10G DDoS防护。</div>
-    </div>
-
-    <div style="overflow-x:auto"><table>
-      <thead><tr><th>厂商</th><th>推荐配置</th><th>月价</th><th>防护</th><th>状态</th></tr></thead>
-      <tbody id="calcTable"></tbody>
-    </table></div>
-    <div style="font-size:10px;color:#484f58;margin-top:6px;text-align:right" id="calcChecked">更新于：--</div>
-  </div>
-</div><!-- PAGE 0: 云服务器 -->
+<!-- PAGE 0: 云服务器 -->
 <div class="page on" id="p0">
   <div class="section">
     <h2>新用户价格对比</h2>
@@ -314,11 +275,87 @@ tr:hover td{background:#161b22}
   </div>
 </div>
 
+<!-- PAGE 4: 配置计算器 -->
+<div class="page" id="p4">
+  <div class="section">
+    <h2> 服务器配置计算器</h2>
+    <div style="background:#161b22;border-radius:8px;padding:16px;margin-bottom:16px">
+      <div style="margin-bottom:12px">
+        <label style="color:#8b949e;font-size:12px;display:block;margin-bottom:4px">游戏类型</label>
+        <select id="calcGame" onchange="calcConfig()" style="width:100%;padding:10px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:13px">
+          <option value="mc">我的世界 MC</option>
+          <option value="cq">传奇 / 热血江湖</option>
+          <option value="ark">方舟生存进化</option>
+          <option value="rust">Rust / 腐蚀</option>
+          <option value="cs">CS:GO / 射击类</option>
+          <option value="2d">泰拉瑞亚 / 星露谷物语类</option>
+          <option value="mmo">独立MMO</option>
+        </select>
+      </div>
+      <div style="margin-bottom:12px">
+        <label style="color:#8b949e;font-size:12px;display:block;margin-bottom:4px">预计玩家数</label>
+        <select id="calcPlayers" onchange="calcConfig()" style="width:100%;padding:10px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:13px">
+          <option value="5">1-5人</option>
+          <option value="20" selected>5-20人</option>
+          <option value="50">20-50人</option>
+          <option value="100">50-100人</option>
+          <option value="200">100人以上</option>
+        </select>
+      </div>
+      <div style="margin-bottom:12px">
+        <label style="color:#8b949e;font-size:12px;display:block;margin-bottom:4px">DDoS 防护需求</label>
+        <select id="calcProtect" onchange="calcConfig()" style="width:100%;padding:10px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:13px">
+          <option value="yes" selected>需要 DDoS 防护</option>
+          <option value="no">不需要</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="calcResult" style="background:#0d2b1a;border:1px solid #238636;border-radius:8px;padding:16px;margin-bottom:12px">
+      <h3 style="color:#3fb950;margin-bottom:8px"> 推荐配置：<span id="calcSpec">4核8G / 10M</span></h3>
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">机房建议：<span id="calcDC" style="color:#c9d1d9">厦门电信</span></div>
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">月预算：<span id="calcPrice" style="color:#3fb950;font-size:18px;font-weight:bold">￥58</span> /月</div>
+      <div style="font-size:11px;color:#8b949e" id="calcNote">续费同价，月付不锁死。自带10G DDoS防护。</div>
+    </div>
+
+    <div style="overflow-x:auto"><table>
+      <thead><tr><th>厂商</th><th>推荐配置</th><th>月价</th><th>防护</th><th>状态</th></tr></thead>
+      <tbody id="calcTable"></tbody>
+    </table></div>
+    <div style="font-size:10px;color:#484f58;margin-top:6px;text-align:right" id="calcChecked"></div>
+  </div>
+</div>
+
+<!-- PAGE 5: AI 演示 -->
+<div class="page" id="p5">
+  <div class="section">
+    <h2> AI 大模型演示</h2>
+    <p style="font-size:11px;color:#8b949e;margin-bottom:10px">快快网络 AI 聚合 API · 国产合规 · 一个接口调用全球主流模型</p>
+    <div style="background:#161b22;border:1px solid #21262d;border-radius:8px;overflow:hidden">
+      <div id="aiMessages" style="height:340px;overflow-y:auto;padding:12px;font-size:13px;scrollbar-width:thin;scrollbar-color:#21262d transparent">
+      </div>
+      <div style="padding:8px 12px;border-top:1px solid #21262d;display:flex;gap:8px">
+        <select id="aiModel" style="flex:0 0 auto;width:100px;padding:8px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:12px">
+          <option value="gpt-5.4">GPT-5.4</option>
+          <option value="gpt-5.4-mini">GPT-5.4-Mini</option>
+          <option value="gpt-5.3-codex">GPT-5.3-Codex</option>
+          <option value="gpt-5.2">GPT-5.2</option>
+        </select>
+        <input id="aiInput" placeholder="输入消息..." style="flex:1;padding:8px 12px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:13px" onkeydown="if(event.key==='Enter')aiSend()">
+        <button onclick="aiSend()" style="flex:0 0 auto;padding:8px 16px;background:#238636;border:none;border-radius:6px;color:#fff;font-size:13px;cursor:pointer">发送</button>
+      </div>
+    </div>
+    <div style="font-size:10px;color:#484f58;margin-top:6px;text-align:right">演示环境 · 当前使用 gpt-5.4 模型</div>
+  </div>
+</div>
+
 <div class="tabs">
   <button class="tab on" onclick="switchTab(0)"><span class="icon">🖥️</span>云服务器</button>
   <button class="tab" onclick="switchTab(1)"><span class="icon">🛡️</span>云安全</button>
   <button class="tab" onclick="switchTab(2)"><span class="icon">🤖</span>AI竞品</button>
   <button class="tab" onclick="switchTab(3)"><span class="icon">🧠</span>模型库</button>
+  <button class="tab" onclick="switchTab(4)"><span class="icon">🧮</span>算配置</button>
+  <button class="tab" onclick="switchTab(5)"><span class="icon">💬</span>AI演示</button>
 </div>
 
 <div class="footer">© 2026 快快网络 · 内部参考 · 更新至 2026.5.28</div>
@@ -451,6 +488,50 @@ function calcConfig(){
   document.getElementById("calcChecked").textContent="计算时间："+new Date().toLocaleString("zh-CN");
 }
 calcConfig();
+
+const AI_KEY = 'sk-FaAJ6y2hgJn4dpMN4zoePFlie57EsWnna0OqmG9taQfZj5xB';
+const AI_URL = 'https://ai-api.kkidc.com/v1/responses';
+let aiHistory = [];
+
+function addMsg(text, role) {
+  const box = document.getElementById('aiMessages');
+  const div = document.createElement('div');
+  div.className = 'ai-msg ' + (role === 'user' ? 'user' : 'bot');
+  const time = new Date().toLocaleTimeString('zh-CN', {hour:'2-digit',minute:'2-digit'});
+  div.innerHTML = '<div class="avatar">' + (role === 'user' ? 'U' : 'AI') + '</div><div><div class="time">' + time + '</div><div class="bubble">' + text + '</div></div>';
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+async function aiSend() {
+  const inp = document.getElementById('aiInput');
+  const msg = inp.value.trim();
+  if (!msg) return;
+  inp.value = '';
+  addMsg(msg, 'user');
+
+  const loadDiv = document.createElement('div');
+  loadDiv.className = 'ai-msg bot';
+  loadDiv.innerHTML = '<div class="avatar">AI</div><div><div class="bubble" style="color:#8b949e">...</div></div>';
+  document.getElementById('aiMessages').appendChild(loadDiv);
+
+  try {
+    const model = document.getElementById('aiModel').value;
+    const res = await fetch(AI_URL, {
+      method: 'POST',
+      headers: {'Authorization': 'Bearer ' + AI_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({model: model, input: [{role: 'user', content: msg}]})
+    });
+    const data = await res.json();
+    loadDiv.remove();
+    if (data.error) { addMsg('错误：' + (data.error.message || JSON.stringify(data.error)), 'bot'); return; }
+    const reply = data.output[0].content[0].text;
+    addMsg(reply, 'bot');
+  } catch(e) {
+    loadDiv.remove();
+    addMsg('请求失败：' + e.message + '（API 可能需要部署到线上才能跨域调用，当前为本地预览限制）', 'bot');
+  }
+}
 </script>
 </body>
 </html>
