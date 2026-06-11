@@ -519,10 +519,10 @@ function calcConfig(){
   document.getElementById("calcNote").textContent=note;
   var vendors=[
     {name:"快快网络",spec:spec,price:"￥"+price+"/月",def:"自带10G",stock:"现货",c:"#3fb950",url:"https://www.kkidc.com/ecs/tobuy.html"},
-    {name:"阿里云",spec:price<80?"2核2G 3M":"需加购高防IP",price:price<80?"￥99/年":"￥600+/年",def:"另购",stock:"现货",c:"#3fb950",url:"https://www.aliyun.com/daily-act/ecs/activity_selection"},
-    {name:"腾讯云",spec:price<80?"4核4G 3M":"需加购高防IP",price:price<80?"￥99/年":"￥500+/年",def:"另购",stock:"现货",c:"#3fb950",url:"https://cloud.tencent.com/act/new"},
-    {name:"华为云",spec:price<80?"2核2G 2M":"配置偏低",price:price<80?"￥36/年":"￥300+/年",def:"另购",stock:"限量",c:"#d2991d",url:"https://activity.huaweicloud.com/618_promotion/index.html"},
-    {name:"京东云",spec:price<80?"2核2G 3M":"节点少",price:price<80?"￥38/年":"￥200+/年",def:"另购",stock:"限量",c:"#d2991d",url:"https://www.jdcloud.com/cn/pages/cloudpromotion"}
+    {name:"阿里云",spec:"2核2G 3M",price:"￥99/年",def:"另购",stock:"现货",c:"#3fb950",url:"https://www.aliyun.com/daily-act/ecs/activity_selection"},
+    {name:"腾讯云",spec:"4核4G 3M",price:"￥99/年",def:"另购",stock:"现货",c:"#3fb950",url:"https://cloud.tencent.com/act/new"},
+    {name:"华为云",spec:"2核2G 2M",price:"￥36/年",def:"另购",stock:"限量",c:"#d2991d",url:"https://activity.huaweicloud.com/618_promotion/index.html"},
+    {name:"京东云",spec:"2核2G 3M",price:"￥38/年",def:"另购",stock:"限量",c:"#d2991d",url:"https://www.jdcloud.com/cn/pages/cloudpromotion"}
   ];
   document.getElementById("calcTable").innerHTML=vendors.map(function(v){return '<tr'+(v.name==="快快网络"?' class="kk"':'')+'><td><a href="'+v.url+'" target="_blank" style="color:#58a6ff;text-decoration:none">'+v.name+'</a></td><td>'+v.spec+'</td><td>'+v.price+'</td><td>'+v.def+'</td><td><b style="color:'+v.c+'">['+v.stock+']</b></td></tr>';}).join("");
   document.getElementById("calcChecked").textContent="计算时间："+new Date().toLocaleString("zh-CN");
