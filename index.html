@@ -129,11 +129,11 @@ tr:hover td{background:#161b22}
     <div style="overflow-x:auto"><table>
       <thead><tr><th>厂商</th><th>配置</th><th>新用户</th><th>续费</th><th>防护</th><th>槽点</th></tr></thead>
       <tbody>
-      <tr><td><a href="https://www.aliyun.com" target="_blank" style="color:#58a6ff;text-decoration:none">阿里云</a></td><td><a href="https://www.aliyun.com/minisite/goods" target="_blank" style="color:#58a6ff;text-decoration:underline">4核4G 3M</a></td><td>￥99/年</td><td>￥600/年</td><td>另购</td><td><small style="color:#f85149">[售罄]</small> 续费6倍</td></tr>
-      <tr><td><a href="https://cloud.tencent.com" target="_blank" style="color:#58a6ff;text-decoration:none">腾讯云</a></td><td><a href="https://cloud.tencent.com/act/new" target="_blank" style="color:#58a6ff;text-decoration:underline">4核4G 4M</a></td><td>￥88/年</td><td>￥500/年</td><td>另购</td><td><small style="color:#f85149">[售罄]</small> 轻量限速</td></tr>
-      <tr><td><a href="https://www.huaweicloud.com" target="_blank" style="color:#58a6ff;text-decoration:none">华为云</a></td><td><a href="https://activity.huaweicloud.com/free_test" target="_blank" style="color:#58a6ff;text-decoration:underline">4核2G 1M</a></td><td>￥68/年</td><td>￥400/年</td><td>另购</td><td><small style="color:#f85149">[售罄]</small> 配置低</td></tr>
-      <tr><td><a href="https://www.jdcloud.com" target="_blank" style="color:#58a6ff;text-decoration:none">京东云</a></td><td><a href="https://www.jdcloud.com/cn/pages/newuser" target="_blank" style="color:#58a6ff;text-decoration:underline">4核4G 2M</a></td><td>￥58/年</td><td>￥300/年</td><td>另购</td><td><small style="color:#f85149">[售罄]</small> 节点少</td></tr>
-      <tr><td><a href="https://www.ucloud.cn" target="_blank" style="color:#58a6ff;text-decoration:none">UCloud</a></td><td><a href="https://www.ucloud.cn" target="_blank" style="color:#58a6ff;text-decoration:underline">4核4G 1M</a></td><td>￥99/年</td><td>￥500/年</td><td>另购</td><td><small style="color:#d2991d">[限量]</small> 体量小</td></tr>
+      <tr><td><a href="https://www.aliyun.com" target="_blank" style="color:#58a6ff;text-decoration:none">阿里云</a></td><td><a href="https://www.aliyun.com/daily-act/ecs/activity_selection" target="_blank" style="color:#58a6ff;text-decoration:underline">2核2G 3M</a></td><td>￥99/年</td><td>￥99/年</td><td>另购</td><td><small style="color:#3fb950">[现货]</small> ECS 99计划 续费同价</td></tr>
+      <tr><td><a href="https://cloud.tencent.com" target="_blank" style="color:#58a6ff;text-decoration:none">腾讯云</a></td><td><a href="https://cloud.tencent.com/act/new" target="_blank" style="color:#58a6ff;text-decoration:underline">4核4G 3M</a></td><td>￥99/年</td><td>￥99/年</td><td>另购</td><td><small style="color:#3fb950">[现货]</small> 轻量 同价续费</td></tr>
+      <tr><td><a href="https://www.huaweicloud.com" target="_blank" style="color:#58a6ff;text-decoration:none">华为云</a></td><td><a href="https://activity.huaweicloud.com/618_promotion/index.html" target="_blank" style="color:#58a6ff;text-decoration:underline">2核2G 2M</a></td><td>￥36/年</td><td>￥300/年</td><td>另购</td><td><small style="color:#d2991d">[限量]</small> Flexus入门 续费暴涨</td></tr>
+      <tr><td><a href="https://www.jdcloud.com" target="_blank" style="color:#58a6ff;text-decoration:none">京东云</a></td><td><a href="https://www.jdcloud.com/cn/pages/cloudpromotion" target="_blank" style="color:#58a6ff;text-decoration:underline">2核2G 3M</a></td><td>￥38/年</td><td>￥200/年</td><td>另购</td><td><small style="color:#d2991d">[限量]</small> 续费涨5倍</td></tr>
+      <tr><td><a href="https://www.ucloud.cn" target="_blank" style="color:#58a6ff;text-decoration:none">UCloud</a></td><td><a href="https://www.ucloud.cn/site/active/kuaijiesale.html" target="_blank" style="color:#58a6ff;text-decoration:underline">2核2G 4M</a></td><td>￥59/年</td><td>￥400/年</td><td>另购</td><td><small style="color:#d2991d">[限量]</small> 体量小</td></tr>
       <tr class="kk"><td><a href="https://www.kkidc.com" target="_blank" style="color:#3fb950;text-decoration:none;font-weight:bold"><b>快快网络</b></a></td><td><a href="https://www.kkidc.com/ecs/tobuy.html" target="_blank" style="color:#3fb950;text-decoration:underline;font-weight:bold"><b>4核8G 10M</b></a></td><td><b>￥58/月</b></td><td><b>￥58/月</b></td><td><b>自带10G</b></td><td><b><small style="color:#3fb950">[现货]</small> 月付不变</b></td></tr>
       </tbody>
     </table></div>
@@ -496,10 +496,10 @@ function calcConfig(){
   document.getElementById("calcNote").textContent=note;
   var vendors=[
     {name:"快快网络",spec:spec,price:"￥"+price+"/月",def:"自带10G",stock:"现货",c:"#3fb950",url:"https://www.kkidc.com/ecs/tobuy.html"},
-    {name:"阿里云",spec:price<80?"4核4G 3M":"需加购高防IP",price:price<80?"￥99/年":"￥600+/年",def:"另购",stock:"售罄",c:"#f85149",url:"https://www.aliyun.com/minisite/goods"},
-    {name:"腾讯云",spec:price<80?"4核4G 4M":"需加购高防IP",price:price<80?"￥88/年":"￥500+/年",def:"另购",stock:"售罄",c:"#f85149",url:"https://cloud.tencent.com/act/new"},
-    {name:"华为云",spec:price<80?"4核2G 1M":"配置偏低",price:price<80?"￥68/年":"￥400+/年",def:"另购",stock:"售罄",c:"#f85149",url:"https://activity.huaweicloud.com/free_test"},
-    {name:"京东云",spec:price<80?"4核4G 2M":"节点少",price:price<80?"￥58/年":"￥300+/年",def:"另购",stock:"售罄",c:"#f85149",url:"https://www.jdcloud.com/cn/pages/newuser"}
+    {name:"阿里云",spec:price<80?"2核2G 3M":"需加购高防IP",price:price<80?"￥99/年":"￥600+/年",def:"另购",stock:"现货",c:"#3fb950",url:"https://www.aliyun.com/daily-act/ecs/activity_selection"},
+    {name:"腾讯云",spec:price<80?"4核4G 3M":"需加购高防IP",price:price<80?"￥99/年":"￥500+/年",def:"另购",stock:"现货",c:"#3fb950",url:"https://cloud.tencent.com/act/new"},
+    {name:"华为云",spec:price<80?"2核2G 2M":"配置偏低",price:price<80?"￥36/年":"￥300+/年",def:"另购",stock:"限量",c:"#d2991d",url:"https://activity.huaweicloud.com/618_promotion/index.html"},
+    {name:"京东云",spec:price<80?"2核2G 3M":"节点少",price:price<80?"￥38/年":"￥200+/年",def:"另购",stock:"限量",c:"#d2991d",url:"https://www.jdcloud.com/cn/pages/cloudpromotion"}
   ];
   document.getElementById("calcTable").innerHTML=vendors.map(function(v){return '<tr'+(v.name==="快快网络"?' class="kk"':'')+'><td><a href="'+v.url+'" target="_blank" style="color:#58a6ff;text-decoration:none">'+v.name+'</a></td><td>'+v.spec+'</td><td>'+v.price+'</td><td>'+v.def+'</td><td><b style="color:'+v.c+'">['+v.stock+']</b></td></tr>';}).join("");
   document.getElementById("calcChecked").textContent="计算时间："+new Date().toLocaleString("zh-CN");
