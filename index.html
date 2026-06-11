@@ -510,9 +510,23 @@ function addMsg(text, role) {
   const div = document.createElement('div');
   div.className = 'ai-msg ' + (role === 'user' ? 'user' : 'bot');
   const time = new Date().toLocaleTimeString('zh-CN', {hour:'2-digit',minute:'2-digit'});
-  div.innerHTML = '<div class="avatar">' + (role === 'user' ? 'U' : 'AI') + '</div><div><div class="time">' + time + '</div><div class="bubble">' + text + '</div></div>';
+  const imgMatch = text.match(/!\[image\]\(data:image\/([^;]+);base64,([^)]+)\)/);
+  if (imgMatch) {
+    const fmt = imgMatch[1], b64 = imgMatch[2];
+    const dataUrl = 'data:image/' + fmt + ';base64,' + b64;
+    div.innerHTML = '<div class="avatar">' + (role === 'user' ? 'U' : 'AI') + '</div><div><div class="time">' + time + '</div><div class="bubble" style="padding:4px"><img src="' + dataUrl + '" style="max-width:100%;border-radius:4px;display:block"><button onclick="saveImg(\'' + dataUrl + '\',\'' + fmt + '\')" style="margin-top:6px;padding:4px 10px;background:#1f6feb;border:none;border-radius:4px;color:#fff;font-size:11px;cursor:pointer">下载图片</button></div></div>';
+  } else {
+    div.innerHTML = '<div class="avatar">' + (role === 'user' ? 'U' : 'AI') + '</div><div><div class="time">' + time + '</div><div class="bubble">' + text + '</div></div>';
+  }
   box.appendChild(div);
   box.scrollTop = box.scrollHeight;
+}
+
+function saveImg(dataUrl, fmt) {
+  const a = document.createElement('a');
+  a.href = dataUrl;
+  a.download = 'AI_Image_' + Date.now() + '.' + fmt;
+  a.click();
 }
 
 async function aiSend() {
