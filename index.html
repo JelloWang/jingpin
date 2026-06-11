@@ -335,11 +335,31 @@ tr:hover td{background:#161b22}
       <div id="aiMessages" style="height:340px;overflow-y:auto;padding:12px;font-size:13px;scrollbar-width:thin;scrollbar-color:#21262d transparent">
       </div>
       <div style="padding:8px 12px;border-top:1px solid #21262d;display:flex;gap:8px">
-        <select id="aiModel" style="flex:0 0 auto;width:100px;padding:8px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:12px">
+        <select id="aiModel" style="flex:0 0 auto;width:140px;padding:8px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:12px">
           <option value="gpt-5.4">GPT-5.4</option>
           <option value="gpt-5.4-mini">GPT-5.4-Mini</option>
+          <option value="gpt-5.5">GPT-5.5</option>
           <option value="gpt-5.3-codex">GPT-5.3-Codex</option>
           <option value="gpt-5.2">GPT-5.2</option>
+          <option value="gpt-5.4" disabled>───── Claude ─────</option>
+          <option value="claude-sonnet-4-6">Claude Sonnet 4.6</option>
+          <option value="claude-opus-4-8">Claude Opus 4.8</option>
+          <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5</option>
+          <option value="claude-fable-5">Claude Fable 5</option>
+          <option value="gpt-5.4" disabled>───── Gemini ─────</option>
+          <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+          <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+          <option value="gemini-3-pro-preview">Gemini 3 Pro</option>
+          <option value="gemini-3.5-flash">Gemini 3.5 Flash</option>
+          <option value="gpt-5.4" disabled>─── 图像生成 ───</option>
+          <option value="gemini-2.5-flash-image">Gemini 2.5 Flash Image</option>
+          <option value="gemini-3-pro-image-preview">Gemini 3 Pro Image</option>
+          <option value="gemini-3.1-flash-image-preview">Gemini 3.1 Flash Img</option>
+          <option value="gpt-5.4" disabled>──── 快快 ────</option>
+          <option value="kkai-5.5">KKAI 5.5</option>
+          <option value="kkai-ch-4.5">KKAI CH 4.5</option>
+          <option value="kkai-co-4.8">KKAI CO 4.8</option>
+          <option value="kkai-cs-4.6">KKAI CS 4.6</option>
         </select>
         <input id="aiInput" placeholder="输入消息..." style="flex:1;padding:8px 12px;background:#0d1117;border:1px solid #21262d;border-radius:6px;color:#c9d1d9;font-size:13px" onkeydown="if(event.key==='Enter')aiSend()">
         <button onclick="aiSend()" style="flex:0 0 auto;padding:8px 16px;background:#238636;border:none;border-radius:6px;color:#fff;font-size:13px;cursor:pointer">发送</button>
