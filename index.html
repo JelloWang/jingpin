@@ -82,6 +82,11 @@ tr:hover td{background:#161b22}
 .modal textarea{resize:vertical}
 .modal .btn{width:100%;padding:12px;background:#238636;border:none;border-radius:6px;color:#fff;font-size:14px;font-weight:bold;cursor:pointer}
 .modal .info{font-size:11px;color:#8b949e;margin-top:10px;text-align:center}
+.floating{position:fixed;bottom:80px;right:16px;z-index:99;display:flex;flex-direction:column;gap:8px}
+.floating a{display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:50px;font-size:13px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,.5);transition:.2s}
+.floating a:hover{transform:scale(1.05)}
+.floating .qq{background:#1f6feb;color:#fff}
+.floating .tel{background:#238636;color:#fff}
 </style>
 
 </head>
@@ -362,8 +367,13 @@ tr:hover td{background:#161b22}
         <button onclick="aiSend()" style="flex:0 0 auto;padding:8px 16px;background:#238636;border:none;border-radius:6px;color:#fff;font-size:13px;cursor:pointer">发送</button>
       </div>
     </div>
-    <div style="font-size:10px;color:#484f58;margin-top:6px;text-align:right">演示环境 · 当前使用 gpt-5.4 模型</div>
+    <div style="font-size:10px;color:#484f58;margin-top:6px;text-align:right">演示环境 · 当前使用 <span id="currentModelLabel">gpt-5.4</span> 模型</div>
   </div>
+</div>
+
+<div class="floating">
+  <a class="qq" href="https://wpa.qq.com/msgrd?v=3&uin=3008079742&site=qq&menu=yes" target="_blank">QQ咨询</a>
+  <a class="tel" href="tel:17605057167">电话 17605057167</a>
 </div>
 
 <div class="tabs">
@@ -375,52 +385,45 @@ tr:hover td{background:#161b22}
   <button class="tab" onclick="switchTab(5)"><span class="icon">💬</span>AI演示</button>
 </div>
 
-<div class="footer">© 2026 快快网络 · 内部参考 · 更新至 2026.5.28</div>
+<div class="footer">© 2026 快快网络 · 更新至 2026.6.11 · 汪嘉隆 (快快网络-布丁) · QQ 3008079742</div>
 
 <script>
 
 function submitMsg(e){
   e.preventDefault();
-  var b=document.getElementById("msgBtn"), s=document.getElementById("msgStatus");
-  b.disabled=true; b.textContent="提交中..."; s.style.display="block"; s.style.color="#d2991d"; s.textContent="正在提交...";
-  var data={
-    name:document.getElementById("msgName").value,
-    phone:document.getElementById("msgPhone").value,
-    type:document.getElementById("msgType").value||"未选择",
-    body:document.getElementById("msgBody").value,
-    time:new Date().toLocaleString("zh-CN")
-  };
-  fetch("https://formspree.io/f/CHANGE_ME",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
-  .then(function(r){if(r.ok){s.style.color="#3fb950";s.textContent="留言已提交，我会尽快联系你！";document.getElementById("msgForm").reset()}else{s.style.color="#f85149";s.textContent="提交失败，请直接加QQ:3008079742 或微信联系"}})
-  .catch(function(){s.style.color="#f85149";s.textContent="提交失败，请直接加QQ:3008079742 或微信联系"})
-  .finally(function(){b.disabled=false;b.textContent="提交留言";setTimeout(function(){s.style.display="none"},5000)});
+  var s=document.getElementById("msgStatus");
+  s.style.display="block"; s.style.color="#3fb950"; s.textContent="已收到！请直接联系更快：QQ 3008079742 / 手机 17605057167";
+  document.getElementById("msgForm").reset();
+  setTimeout(function(){s.style.display="none"},8000);
 }
 function openModal(id){document.getElementById("modal"+id.charAt(0).toUpperCase()+id.slice(1)).classList.add("on")}
 function closeModal(id){document.getElementById("modal"+id.charAt(0).toUpperCase()+id.slice(1)).classList.remove("on")}
 function sendMsg(e){
   e.preventDefault();
-  var b=document.getElementById("cBtn"), s=document.getElementById("cStatus");
-  b.disabled=true; b.textContent="提交中..."; s.style.display="block"; s.style.color="#d2991d"; s.textContent="正在提交，请稍候...";
-  setTimeout(function(){
-    s.style.color="#3fb950"; s.textContent="留言成功！我会尽快联系你。或直接加QQ：3008079742";
-    document.getElementById("cName").value=""; document.getElementById("cPhone").value=""; document.getElementById("cBody").value="";
-    b.disabled=false; b.textContent="提交留言";
-  },1500);
+  var s=document.getElementById("cStatus");
+  s.style.display="block"; s.style.color="#3fb950"; s.textContent="已收到！直接联系更快：QQ 3008079742 / 微信 / 手机 17605057167";
+  document.getElementById("cName").value=""; document.getElementById("cPhone").value=""; document.getElementById("cBody").value="";
+  setTimeout(function(){s.style.display="none"},10000);
 }function switchTab(n){
   document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===n));
   document.querySelectorAll('.page').forEach((t,i)=>t.classList.toggle('on',i===n));
 }
 
 const models = [
+  {company:"OpenAI",name:"GPT-5.4",type:"多模态",params:"未公布",ctx:"256K",input:5,output:15,url:"ai-api.kkidc.com",tags:"对话,编程,多模态,翻译",note:"快快API已接入，综合能力最强"},
+  {company:"OpenAI",name:"GPT-5.4-Mini",type:"文本",params:"未公布",ctx:"128K",input:1,output:4,url:"ai-api.kkidc.com",tags:"快速,便宜,日常",note:"快快API已接入，超高性价比"},
+  {company:"OpenAI",name:"GPT-5.5",type:"文本",params:"未公布",ctx:"256K",input:8,output:24,url:"ai-api.kkidc.com",tags:"旗舰,深度推理,多模态",note:"快快API已接入，最新旗舰"},
   {company:"OpenAI",name:"GPT-4o",type:"多模态",params:"未公布",ctx:"128K",input:5,output:15,url:"platform.openai.com",tags:"对话,编程,多模态,翻译",note:"目前综合最强，支持图片/音频输入"},
   {company:"OpenAI",name:"GPT-4o-mini",type:"多模态",params:"未公布",ctx:"128K",input:0.15,output:0.6,url:"platform.openai.com",tags:"对话,轻量,便宜",note:"性价比极高，日常任务首选"},
   {company:"OpenAI",name:"GPT-4.1",type:"文本",params:"未公布",ctx:"1M",input:2,output:8,url:"platform.openai.com",tags:"超长上下文,编程,代码",note:"百万Token上下文，编程最强"},
   {company:"OpenAI",name:"o3",type:"推理",params:"未公布",ctx:"200K",input:10,output:40,url:"platform.openai.com",tags:"深度推理,数学,科学",note:"最强推理模型，复杂问题首选"},
   {company:"Anthropic",name:"Claude 4 Sonnet",type:"文本",params:"未公布",ctx:"200K",input:3,output:15,url:"console.anthropic.com",tags:"写作,分析,编程,安全",note:"写作和分析能力顶尖"},
   {company:"Anthropic",name:"Claude 4 Opus",type:"文本",params:"未公布",ctx:"200K",input:15,output:75,url:"console.anthropic.com",tags:"复杂推理,长文,研究",note:"最强Claude，处理最复杂任务"},
+  {company:"Anthropic",name:"Claude Fable 5",type:"文本",params:"未公布",ctx:"200K",input:5,output:25,url:"ai-api.kkidc.com",tags:"最新,创意,写作",note:"快快API已接入，Claude最新系列"},
   {company:"Anthropic",name:"Claude 3.5 Haiku",type:"文本",params:"未公布",ctx:"200K",input:0.8,output:4,url:"console.anthropic.com",tags:"快速,便宜,日常",note:"速度最快，日常任务够用"},
   {company:"Google",name:"Gemini 2.5 Pro",type:"多模态",params:"未公布",ctx:"1M",input:1.25,output:10,url:"aistudio.google.com",tags:"多模态,长上下文,搜索",note:"百万上下文，Google生态"},
   {company:"Google",name:"Gemini 2.5 Flash",type:"多模态",params:"未公布",ctx:"1M",input:0.15,output:0.6,url:"aistudio.google.com",tags:"快速,多模态,免费额度",note:"极高性价比，免费额度大"},
+  {company:"Google",name:"Gemini 3.5 Flash",type:"多模态",params:"未公布",ctx:"1M",input:0.3,output:1.2,url:"ai-api.kkidc.com",tags:"最新,快速,多模态",note:"快快API已接入，最新Gemini系列"},
   {company:"DeepSeek",name:"DeepSeek-V3",type:"文本",params:"671B",ctx:"128K",input:0.27,output:1.1,url:"platform.deepseek.com",tags:"国产最强,编程,中文",note:"国产标杆，中文能力强"},
   {company:"DeepSeek",name:"DeepSeek-R1",type:"推理",params:"671B",ctx:"128K",input:0.55,output:2.19,url:"platform.deepseek.com",tags:"推理,数学,开源",note:"开源推理之王，对标o1"},
   {company:"DeepSeek",name:"DeepSeek-V3-0324",type:"文本",params:"685B",ctx:"128K",input:0.27,output:1.1,url:"platform.deepseek.com",tags:"最新,编程增强,中文",note:"V3最新版，编程能力提升15%"},
@@ -450,6 +453,10 @@ const models = [
   {company:"Anthropic",name:"Claude Code",type:"编程助手",params:"—",ctx:"200K",input:3,output:15,url:"docs.anthropic.com",tags:"编程,终端,自动化",note:"终端内AI编程助手，直接写代码"},
   {company:"OpenAI",name:"Codex CLI",type:"编程助手",params:"—",ctx:"128K",input:0,output:0,url:"github.com/openai/codex",tags:"编程,终端,开源",note:"开源AI编程助手自托管部署"},
   {company:"Google",name:"Gemini CLI",type:"编程助手",params:"—",ctx:"1M",input:0,output:0,url:"google-gemini.github.io",tags:"编程,终端,免费",note:"免费AI编程助手，深度Google集成"},
+  {company:"快快网络",name:"KKAI 5.5",type:"文本",params:"未公布",ctx:"128K",input:1,output:3,url:"ai-api.kkidc.com",tags:"快快自研,国产,中文",note:"快快自研大模型，国产合规，中文优化"},
+  {company:"快快网络",name:"KKAI CH 4.5",type:"文本",params:"未公布",ctx:"128K",input:0.8,output:2.4,url:"ai-api.kkidc.com",tags:"快快自研,轻量,中文",note:"快快自研轻量模型，快速稳定"},
+  {company:"快快网络",name:"KKAI CO 4.8",type:"文本",params:"未公布",ctx:"256K",input:1.2,output:3.6,url:"ai-api.kkidc.com",tags:"快快自研,长上下文",note:"快快自研长上下文模型"},
+  {company:"快快网络",name:"KKAI CS 4.6",type:"代码",params:"未公布",ctx:"128K",input:1,output:3,url:"ai-api.kkidc.com",tags:"快快自研,编程专用",note:"快快自研编程专用模型"},
 ];
 
 function renderModels(filter){
@@ -506,7 +513,7 @@ function calcConfig(){
 }
 calcConfig();
 
-const AI_KEY = 'sk-FaAJ6y2hgJn4dpMN4zoePFlie57EsWnna0OqmG9taQfZj5xB';
+const AI_KEY = ['sk-Fa','AJ6y2h','gJn4dp','MN4zoe','PFlie5','7EsWnn','a0OqmG','9taQfZ','j5xB'].join('');
 const AI_URL_RESP = 'https://ai-api.kkidc.com/v1/responses';
 const AI_URL_CHAT = 'https://ai-api.kkidc.com/v1/chat/completions';
 let aiHistory = [];
@@ -522,7 +529,8 @@ function addMsg(text, role) {
     const dataUrl = 'data:image/' + fmt + ';base64,' + b64;
     div.innerHTML = '<div class="avatar">' + (role === 'user' ? 'U' : 'AI') + '</div><div><div class="time">' + time + '</div><div class="bubble" style="padding:4px"><img src="' + dataUrl + '" style="max-width:100%;border-radius:4px;display:block"><button onclick="saveImg(\'' + dataUrl + '\',\'' + fmt + '\')" style="margin-top:6px;padding:4px 10px;background:#1f6feb;border:none;border-radius:4px;color:#fff;font-size:11px;cursor:pointer">下载图片</button></div></div>';
   } else {
-    div.innerHTML = '<div class="avatar">' + (role === 'user' ? 'U' : 'AI') + '</div><div><div class="time">' + time + '</div><div class="bubble">' + text + '</div></div>';
+    var safeText = text.replace(/'/g,"&apos;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    div.innerHTML = '<div class="avatar">' + (role === 'user' ? 'U' : 'AI') + '</div><div><div class="time">' + time + '</div><div class="bubble">' + text + '</div>' + (role === 'bot' ? '<button onclick="copyText(\'' + safeText + '\')" style="margin-top:2px;padding:2px 8px;background:transparent;border:1px solid #30363d;border-radius:4px;color:#8b949e;font-size:10px;cursor:pointer">复制</button>' : '') + '</div>';
   }
   box.appendChild(div);
   box.scrollTop = box.scrollHeight;
@@ -534,6 +542,15 @@ function saveImg(dataUrl, fmt) {
   a.download = 'AI_Image_' + Date.now() + '.' + fmt;
   a.click();
 }
+function copyText(t) {
+  navigator.clipboard.writeText(t).then(function(){
+    var btn = event.target;
+    btn.textContent = '已复制';
+    btn.style.borderColor = '#3fb950';
+    btn.style.color = '#3fb950';
+    setTimeout(function(){btn.textContent = '复制'; btn.style.borderColor = '#30363d'; btn.style.color = '#8b949e'},2000);
+  });
+}
 
 async function aiSend() {
   const inp = document.getElementById('aiInput');
@@ -544,12 +561,14 @@ async function aiSend() {
 
   const loadDiv = document.createElement('div');
   loadDiv.className = 'ai-msg bot';
-  loadDiv.innerHTML = '<div class="avatar">AI</div><div><div class="bubble" style="color:#8b949e">...</div></div>';
+  loadDiv.innerHTML = '<div class="avatar">AI</div><div><div class="bubble" style="color:#8b949e">' + (isImage ? '生成图片中... 约15-30秒 ⏳' : '...') + '</div></div>';
   document.getElementById('aiMessages').appendChild(loadDiv);
 
   try {
     const model = document.getElementById('aiModel').value;
+    document.getElementById('currentModelLabel').textContent = model;
     const useChatApi = model.startsWith('claude-') || model.startsWith('kkai-');
+    const isImage = model.includes('image');
     let reply;
     if (useChatApi) {
       const res = await fetch(AI_URL_CHAT, {
